@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-watchlapp-dev-214810-authRole",
+      "UnauthRoleArn": "arn:aws:iam::949317701306:role/amplify-watchlapp-dev-214810-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::949317701306:role/amplify-watchlapp-dev-214810-authRole",
+      "Region": "eu-west-1",
+      "DeploymentBucketName": "amplify-watchlapp-dev-214810-deployment",
+      "UnauthRoleName": "amplify-watchlapp-dev-214810-unauthRole",
+      "StackName": "amplify-watchlapp-dev-214810",
+      "StackId": "arn:aws:cloudformation:eu-west-1:949317701306:stack/amplify-watchlapp-dev-214810/c9d08560-dd58-11ed-bd7f-0618f21b4f37",
+      "AmplifyAppId": "d3jwyb8nxplac8"
+    }
+  }
+}
