@@ -64,7 +64,7 @@
       "Ref": "AWS::StackId"
     },
     "permissions": [],
-    "hostedUIDomainName": "watchlapp4875f828-4875f828",
+    "hostedUIDomainName": "watchlapp17614c3c-17614c3c",
     "authProvidersUserPool": [
       "Google"
     ],

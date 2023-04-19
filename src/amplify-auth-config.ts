@@ -1,4 +1,5 @@
 import awsConfig from "./aws-exports";
+import { Amplify } from 'aws-amplify';
 
 const isLocalhost = Boolean(__DEV__);
 
