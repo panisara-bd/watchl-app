@@ -1,10 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Slot } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
+import { Amplify } from 'aws-amplify';
+import awsConfig from '../src/aws-exports';
 
-export default function App() {
+Amplify.configure(awsConfig);
+
+export default function MainLayout() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Slot />
       <StatusBar style="auto" />
     </View>
   );

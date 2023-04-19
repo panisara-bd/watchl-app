@@ -14,8 +14,12 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "scheme": "watchl",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": ["watchl"]
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -24,7 +28,8 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
     }
   }
 }

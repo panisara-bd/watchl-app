@@ -10,6 +10,11 @@
       "StackName": "amplify-watchlapp-dev-214810",
       "StackId": "arn:aws:cloudformation:eu-west-1:949317701306:stack/amplify-watchlapp-dev-214810/c9d08560-dd58-11ed-bd7f-0618f21b4f37",
       "AmplifyAppId": "d3jwyb8nxplac8"
+    },
+    "categories": {
+      "auth": {
+        "watchlapp6b68744d": {}
+      }
     }
   }
 }
