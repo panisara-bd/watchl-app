@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import SignUp from '../src/auth/screens/SignUp';
 import { Auth } from 'aws-amplify';
 import Header from './header';
+import MediaName from './schedule';
 
 const useUser = () => {
   const [user, setUser] = useState<any>(null);
@@ -20,6 +21,7 @@ export default function Home() {
       <>
         <Header />
         <Text>Helloooo {user.attributes.email}</Text>
+       <MediaName />
       </>
     );
   }
