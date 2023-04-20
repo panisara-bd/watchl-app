@@ -8,6 +8,7 @@ declare module 'aws-amplify' {
     static signIn(username: string, password: string): any;
     static currentAuthenticatedUser(): any;
     static signOut(): any;
+    static federatedSignIn(data: any): any;
   }
   export class Hub {
     static listen(

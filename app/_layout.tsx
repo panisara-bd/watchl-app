@@ -4,7 +4,28 @@ import { StyleSheet, View } from 'react-native';
 import { Amplify } from 'aws-amplify';
 import awsConfig from '../src/aws-exports';
 
-Amplify.configure(awsConfig);
+const isLocalhost = Boolean(__DEV__);
+
+const [
+  localRedirectSignIn,
+  productionRedirectSignIn,
+] = awsConfig.oauth.redirectSignIn.split(",");
+
+const [
+  localRedirectSignOut,
+  productionRedirectSignOut,
+] = awsConfig.oauth.redirectSignOut.split(",");
+
+const updatedAwsConfig = {
+  ...awsConfig,
+  oauth: {
+    ...awsConfig.oauth,
+    redirectSignIn: isLocalhost ? localRedirectSignIn : productionRedirectSignIn,
+    redirectSignOut: isLocalhost ? localRedirectSignOut : productionRedirectSignOut,
+  }
+}
+
+Amplify.configure(updatedAwsConfig);
 
 export default function MainLayout() {
   return (

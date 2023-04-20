@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Auth } from 'aws-amplify';
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth";
 
 export default function SignUp() {
   const router = useRouter();
@@ -38,6 +39,14 @@ export default function SignUp() {
         secureTextEntry
       />
       <Button title="Sign up" onPress={onSignUp} />
+      <Button
+        title="Open Google"
+        onPress={() =>
+          Auth.federatedSignIn({
+            provider: CognitoHostedUIIdentityProvider.Google,
+          })
+        }
+      />
       <Text>
         Already have an account? Go to{' '}
         <Text
