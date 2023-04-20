@@ -17,11 +17,11 @@ export default function Home() {
 
   if (user) {
     return (
-    <>
-      <Header />
-    <Text>Helloooo {user.attributes.email}</Text>
-    </>
-    )
+      <>
+        <Header />
+        <Text>Helloooo {user.attributes.email}</Text>
+      </>
+    );
   }
   return <SignUp />;
 }
