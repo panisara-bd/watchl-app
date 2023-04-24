@@ -1,9 +1,10 @@
 import { Button } from 'react-native';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'expo-router';
+import SearchMedia from '../src/media/screens/SearchMedia';
 
 export default function Header() {
-    const router = useRouter()
+  const router = useRouter();
 
   const onSignOut = async () => {
     try {
@@ -14,5 +15,11 @@ export default function Header() {
     }
   };
 
-  return <Button title="Sign out" onPress={onSignOut} />;
+  return (
+    <>
+      <Button title="Sign out" onPress={onSignOut} />
+      <SearchMedia />
+    </>
+  );
 }
+

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'expo-router';
+import SignUp from './SignUp';
 
 export default function SignIn() {
     const router = useRouter();
@@ -32,6 +33,7 @@ export default function SignIn() {
         secureTextEntry
       />
       <Button title="Sign In" onPress={onSignIn} />
+      <Text>Don't have an account?</Text><Button title="sign up" onPress={() => router.push('/signIn')} />
     </View>
   );
 }
