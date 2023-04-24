@@ -22,4 +22,7 @@ declare module 'aws-amplify' {
   }
 }
 
+declare module 'aws-amplify-react-native' {
+  export function withOAuth(params: any): any;
+}
 declare module 'expo-router/entry' {}

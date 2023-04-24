@@ -3,6 +3,7 @@ import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'expo-router';
 import SignUp from './SignUp';
+import GoogleAuthButton from '../GoogleAuthButton';
 
 export default function SignIn() {
     const router = useRouter();
@@ -33,6 +34,7 @@ export default function SignIn() {
         secureTextEntry
       />
       <Button title="Sign In" onPress={onSignIn} />
+      <GoogleAuthButton />
       <Text>Don't have an account?</Text><Button title="sign up" onPress={() => router.push('/signIn')} />
     </View>
   );
