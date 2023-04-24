@@ -14,7 +14,7 @@ declare module 'aws-amplify' {
     static listen(
     data: any,
     callback: ({payload: any}) => void
-    ): import('amazon-cognito-identity-js').CognitoUser;
+    ): any;
   }
 
   export class Amplify {

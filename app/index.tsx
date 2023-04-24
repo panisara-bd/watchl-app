@@ -1,19 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Text } from 'react-native';
-import SignUp from '../src/auth/screens/SignUp';
-import { Auth } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
 import Header from './header';
-
-const useUser = () => {
-  const [user, setUser] = useState<any>(null);
-  useEffect(() => {
-    Auth.currentAuthenticatedUser().then((result: any) => setUser(result));
-  }, []);
-  return user;
-};
+import { useRouter } from 'expo-router';
+import SignIn from '../src/auth/screens/SignIn';
+import { useUser } from '../src/auth/UserContext';
 
 export default function Home() {
-  const user = useUser();
+  const { user } = useUser();
 
   if (user) {
     return (
@@ -23,5 +17,5 @@ export default function Home() {
       </>
     );
   }
-  return <SignUp />;
+  return <SignIn />;
 }

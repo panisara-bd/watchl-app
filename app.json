@@ -18,8 +18,11 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "LSApplicationQueriesSchemes": ["watchl"]
-      }
+        "LSApplicationQueriesSchemes": [
+          "watchl"
+        ]
+      },
+      "bundleIdentifier": "com.panisara.watchlApp"
     },
     "android": {
       "adaptiveIcon": {
@@ -30,6 +33,11 @@
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bca3d132-3acb-4249-a4b3-1b0cc4b92d90"
+      }
     }
   }
 }
