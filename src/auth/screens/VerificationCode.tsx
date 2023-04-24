@@ -1,23 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Button, Text, TextInput, View } from 'react-native';
-import { useSearchParams, useRouter } from 'expo-router';
+import { useSearchParams } from 'expo-router';
 import { Auth, Hub } from 'aws-amplify';
 
 export default function VerificationCode() {
   const { username } = useSearchParams();
   const [code, setCode] = useState('');
-  const router = useRouter()
-
-  useEffect(() => {
-    Hub.listen('auth', ({ payload }) => {
-      const { event } = payload;
-      if (event === 'autoSignIn') {
-        router.push('/');
-      } else if (event === 'autoSignIn_failure') {
-        alert('Failed to auto sign in');
-      }
-    });
-  }, []);
 
   if (!username || Array.isArray(username)) {
     return null;

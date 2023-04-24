@@ -14,7 +14,7 @@ declare module 'aws-amplify' {
     static listen(
     data: any,
     callback: ({payload: any}) => void
-    ): import('amazon-cognito-identity-js').CognitoUser;
+    ): any;
   }
 
   export class Amplify {
@@ -22,4 +22,7 @@ declare module 'aws-amplify' {
   }
 }
 
+declare module 'aws-amplify-react-native' {
+  export function withOAuth(params: any): any;
+}
 declare module 'expo-router/entry' {}
