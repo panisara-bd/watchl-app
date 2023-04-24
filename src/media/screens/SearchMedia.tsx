@@ -6,41 +6,50 @@ import {
   FlatList,
   TouchableOpacity,
   StatusBar,
+  Pressable,
 } from 'react-native';
 import { fetchMedia } from '../helpers/get-movies';
 import { useState } from 'react';
+import { Link } from 'expo-router';
 
 type ItemData = {
   id: string;
   l: string;
+  q: string;
+  y: string;
 };
 
 type ItemProps = {
   item: ItemData;
-  onPress: () => void;
-  backgroundColor: string;
-  textColor: string;
 };
 
-const Item = ({ item, onPress, backgroundColor, textColor }: ItemProps) => (
-  <TouchableOpacity
-    onPress={onPress}
-    style={[styles.item, { backgroundColor }]}
-  >
-    <Text style={[styles.title, { color: textColor }]}>{item.l}</Text>
-  </TouchableOpacity>
+const Item = ({ item }: ItemProps) => (
+  <Link href={`/media/${item.id}`} asChild>
+    <Pressable>
+      {() => (
+        <>
+          <Text style={[styles.title]}>{item.l}</Text>
+          <Text>
+            {item.q} ({item.y})
+          </Text>
+        </>
+      )}
+    </Pressable>
+  </Link>
 );
 
 export default function SearchMedia() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  const [debounceTimeout, setDdebounceTimeout] = useState<NodeJS.Timeout>();
-  const [selectedId, setSelectedId] = useState<string>();
+  const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout>();
 
   const getResult = async () => {
-    const res = await fetchMedia(searchQuery);
-    setSearchResults(res.d);
-    return;
+    try {
+      const res = await fetchMedia(searchQuery);
+      setSearchResults(res.d);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onSearchChange = async (query: string) => {
@@ -49,20 +58,11 @@ export default function SearchMedia() {
       clearTimeout(debounceTimeout);
     }
     const timeout = setTimeout(getResult, 500);
-    setDdebounceTimeout(timeout);
+    setDebounceTimeout(timeout);
   };
 
   const renderItem = ({ item }: { item: ItemData }) => {
-    const backgroundColor = item.id === selectedId ? '#6e3b6e' : '#f9c2ff';
-    const color = item.id === selectedId ? 'white' : 'black';
-    return (
-      <Item
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        backgroundColor={backgroundColor}
-        textColor={color}
-      />
-    );
+    return <Item item={item} />;
   };
 
   return (
@@ -72,12 +72,11 @@ export default function SearchMedia() {
         value={searchQuery}
         placeholder="Search here"
       ></TextInput>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView>
         <FlatList
           data={searchResults}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          extraData={selectedId}
         />
       </SafeAreaView>
     </>
@@ -85,21 +84,11 @@ export default function SearchMedia() {
 }
 
 const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: '50%',
-    height: '50%',
-  },
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
   item: {
+    margin: 30,
     padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
   },
   title: {
-    fontSize: 32,
+        fontSize: 14,
   },
 });

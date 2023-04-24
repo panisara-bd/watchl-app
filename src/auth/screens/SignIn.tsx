@@ -33,7 +33,7 @@ export default function SignIn() {
         secureTextEntry
       />
       <Button title="Sign In" onPress={onSignIn} />
-      <Text>Don't have an account?</Text><Button title="sign up" onPress={SignUp} />
+      <Text>Don't have an account?</Text><Button title="sign up" onPress={() => router.push('/signIn')} />
     </View>
   );
 }
