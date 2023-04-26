@@ -1,14 +1,13 @@
 import {
   Text,
-  TextInput,
   SafeAreaView,
   FlatList,
   Pressable,
-  StyleSheet
 } from 'react-native';
 import { fetchMedia } from '../helpers/get-movies';
 import { useState } from 'react';
 import { Link } from 'expo-router';
+import { StyledTextInput } from '../../design-system/components/StyledTextInput';
 
 type ItemData = {
   id: string;
@@ -65,11 +64,12 @@ export default function SearchMedia() {
 
   return (
     <>
-      <TextInput
+      <StyledTextInput
+        isSearchBar
         onChangeText={onSearchChange}
         value={searchQuery}
         placeholder="Search here"
-      ></TextInput>
+      />
       <SafeAreaView>
         <FlatList
           data={searchResults}
@@ -80,9 +80,3 @@ export default function SearchMedia() {
     </>
   );
 }
-
-const style = StyleSheet.create({
-  searchBar: {
-
-  }
-})

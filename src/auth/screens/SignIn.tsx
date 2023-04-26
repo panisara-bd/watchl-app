@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { Button, Pressable, Text, TextInput, View } from 'react-native';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'expo-router';
 import GoogleAuthButton from '../GoogleAuthButton';
-import { authStyle } from '../AuthStyle';
+import { StyledText } from '../../design-system/components/StyledText';
+import { StyledTextInput } from '../../design-system/components/StyledTextInput';
+import { StyledButton } from '../../design-system/components/StyledButton';
+import { CenteredContainer } from '../../design-system/components/CenteredContainer';
+import { StyledLink } from '../../design-system/components/StyledLink';
 
 export default function SignIn() {
   const router = useRouter();
@@ -20,35 +23,27 @@ export default function SignIn() {
   };
 
   return (
-    <View style={authStyle.container}>
-      <Text style={authStyle.textLarge}>Hello again!</Text>
-      <Text style={authStyle.textMedium}>
+    <CenteredContainer>
+      <StyledText size="lg">Hello again!</StyledText>
+      <StyledText size="md">
         Welcome back to WatchL, see what's on the scheldule to watch next?
-      </Text>
-      <TextInput
-        style={authStyle.input}
+      </StyledText>
+      <StyledTextInput
         onChangeText={setUsername}
         value={username}
         placeholder="username"
-        placeholderTextColor="#8B8B8B"
       />
-      <TextInput
-        style={authStyle.input}
+      <StyledTextInput
         onChangeText={setPassword}
         value={password}
         placeholder="password"
-        placeholderTextColor="#8B8B8B"
         secureTextEntry
       />
-      <Pressable style={authStyle.pressableMain} onPress={onSignIn}>
-        <Text style={authStyle.pressableMainText}>Sign In</Text>
-      </Pressable>
-      <Text style={authStyle.textSmall}>Or sign in with</Text>
+      <StyledButton onPress={onSignIn} text="Sign In" />
+      <StyledText size="sm">Or sign in with</StyledText>
       <GoogleAuthButton />
-      <Text style={authStyle.textSmall}>Don't have an account?</Text>
-      <Pressable onPress={() => router.push('/signUp')}>
-        <Text style={authStyle.pressableText}>Go to Sign Up</Text>
-      </Pressable>
-    </View>
+      <StyledText size="sm">Don't have an account?</StyledText>
+      <StyledLink href="/signUp">Go to Sign Up</StyledLink>
+    </CenteredContainer>
   );
 }

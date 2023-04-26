@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { StyleSheet, Pressable, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Pressable, Text } from 'react-native';
 import { useSearchParams } from 'expo-router';
-import { Auth, Hub } from 'aws-amplify';
-import { FontWeight, authStyle } from '../AuthStyle';
+import { Auth } from 'aws-amplify';
+import { CenteredContainer } from '../../design-system/components/CenteredContainer';
+import { StyledText } from '../../design-system/components/StyledText';
+import { StyledTextInput } from '../../design-system/components/StyledTextInput';
+import { StyledButton } from '../../design-system/components/StyledButton';
 
 export default function VerificationCode() {
   const { username } = useSearchParams();
@@ -27,22 +30,14 @@ export default function VerificationCode() {
   };
 
   return (
-    <View style={authStyle.container}>
-      <Text style={authStyle.textLarge}>Enter Verification Code</Text>
-      <TextInput
-        style={authStyle.input}
-        onChangeText={setCode}
-        value={code}
-        placeholder="code"
-        placeholderTextColor="#8B8B8B"
-      />
+    <CenteredContainer>
+      <StyledText size="lg">Enter Verification Code</StyledText>
+      <StyledTextInput onChangeText={setCode} value={code} placeholder="code" />
       <Pressable onPress={onResubmitCode}>
         <Text style={resendCode.text}>Resend verification code</Text>
       </Pressable>
-      <Pressable style={authStyle.pressableMain} onPress={onSubmit}>
-      <Text style={authStyle.pressableMainText}>Verify</Text>
-      </Pressable>
-    </View>
+      <StyledButton onPress={onSubmit} text="Verify" />
+    </CenteredContainer>
   );
 }
 
@@ -52,5 +47,5 @@ const resendCode = StyleSheet.create({
     textAlign: 'center',
     color: '#9B59B6',
     alignSelf: 'flex-end',
-  }
-})
+  },
+});
