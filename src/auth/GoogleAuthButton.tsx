@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'react-native';
 import { withOAuth } from 'aws-amplify-react-native';
+import { StyledButton } from '../design-system/components/StyledButton';
 
 type Props = {
   googleSignIn: any;
@@ -9,7 +9,7 @@ type Props = {
 function GoogleAuthButton(props: Props) {
   const { googleSignIn } = props;
 
-  return <Button title="Google" onPress={googleSignIn} />;
+  return <StyledButton isGoogle text="Google" onPress={googleSignIn} />;
 }
 
 export default withOAuth(GoogleAuthButton);

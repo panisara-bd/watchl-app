@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Slot } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import 'react-native-gesture-handler';
 import { UserContextProvider } from '../src/auth/UserContext';
 import { configureAmplify } from '../src/auth/configureAmplify';
@@ -21,9 +21,7 @@ export default function MainLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 50,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 30,
+    backgroundColor: '#0B0B0B',  
   },
 });

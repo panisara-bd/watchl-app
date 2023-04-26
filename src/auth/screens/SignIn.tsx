@@ -1,49 +1,49 @@
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'expo-router';
 import GoogleAuthButton from '../GoogleAuthButton';
+import { StyledText } from '../../design-system/components/StyledText';
+import { StyledTextInput } from '../../design-system/components/StyledTextInput';
+import { StyledButton } from '../../design-system/components/StyledButton';
+import { CenteredContainer } from '../../design-system/components/CenteredContainer';
+import { StyledLink } from '../../design-system/components/StyledLink';
 
 export default function SignIn() {
-    const router = useRouter();
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const onSignIn = async () => {
     try {
-     await Auth.signIn(username, password);
-     router.push('/');
+      await Auth.signIn(username, password);
+      router.push('/');
     } catch (error) {
-        alert('Could not sign in')
+      alert('Could not sign in');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <TextInput
+    <CenteredContainer>
+      <StyledText size="lg">Hello again!</StyledText>
+      <StyledText size="md">
+        Welcome back to WatchL, see what's on the scheldule to watch next?
+      </StyledText>
+      <StyledTextInput
         onChangeText={setUsername}
         value={username}
         placeholder="username"
       />
-      <TextInput
+      <StyledTextInput
         onChangeText={setPassword}
         value={password}
         placeholder="password"
         secureTextEntry
       />
-      <Button title="Sign In" onPress={onSignIn} />
+      <StyledButton onPress={onSignIn} text="Sign In" />
+      <StyledText size="sm">Or sign in with</StyledText>
       <GoogleAuthButton />
-      <Text>Don't have an account?</Text><Button title="Sign Up" onPress={() => router.push('/signUp')} />
-    </View>
+      <StyledText size="sm">Don't have an account?</StyledText>
+      <StyledLink href="/signUp">Go to Sign Up</StyledLink>
+    </CenteredContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

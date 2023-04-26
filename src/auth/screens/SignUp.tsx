@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Auth } from 'aws-amplify';
 import GoogleAuthButton from '../GoogleAuthButton';
+import { StyledTextInput } from '../../design-system/components/StyledTextInput';
+import { StyledButton } from '../../design-system/components/StyledButton';
+import { StyledText } from '../../design-system/components/StyledText';
+import { CenteredContainer } from '../../design-system/components/CenteredContainer';
+import { StyledLink } from '../../design-system/components/StyledLink';
 
 export default function SignUp() {
   const router = useRouter();
@@ -25,29 +29,25 @@ export default function SignUp() {
   };
 
   return (
-    <View>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <TextInput
+    <CenteredContainer>
+      <StyledText size="lg">Welcome to WatchL</StyledText>
+      <StyledText size="md">Start scheduling what to watch next!</StyledText>
+      <StyledTextInput
         onChangeText={setUsername}
         value={username}
         placeholder="username"
       />
-      <TextInput
+      <StyledTextInput
         onChangeText={setPassword}
         value={password}
         placeholder="password"
         secureTextEntry
       />
-      <Button title="Sign up" onPress={onSignUp} />
-      <Text>
-        Already have an account? Go to{' '}
-        <Text
-          onPress={() => {
-            router.push('/signIn');
-          }}
-        >sign in</Text>
-        <GoogleAuthButton />
-      </Text>
-    </View>
+      <StyledButton text="Sign Up" onPress={onSignUp} />
+      <StyledText size="sm">Or sign up with</StyledText>
+      <GoogleAuthButton />
+      <StyledText size="sm">Already have an account?</StyledText>
+      <StyledLink href="/signIn">Go to Sign In</StyledLink>
+    </CenteredContainer>
   );
 }

@@ -1,21 +1,22 @@
-import { Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 import { Image } from 'expo-image';
 import { fetchById } from '../helpers/get-movies';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'expo-router';
+import { StyledText } from '../../design-system/components/StyledText';
 
 type Props = {
   id: string;
 };
 
 type Media = {
-  title: string
-  titleType: string
-  year: string
+  title: string;
+  titleType: string;
+  year: string;
   image: {
-    url: string
-  }
-}
+    url: string;
+  };
+};
 
 export default function SelectedMedia({ id }: Props) {
   const [mediaResult, setMediaResult] = useState<Media>();
@@ -37,12 +38,11 @@ export default function SelectedMedia({ id }: Props) {
 
   return (
     <>
-      <Text>{mediaResult?.title}</Text>
+      <StyledText size="lg">{mediaResult?.title}</StyledText>
       <Text>
         {mediaResult?.titleType} ({mediaResult?.year})
       </Text>
       <Image
-        style={styles.image}
         source={mediaResult?.image?.url}
         placeholder={mediaResult?.title}
         contentFit="contain"
@@ -57,10 +57,3 @@ export default function SelectedMedia({ id }: Props) {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: 250,
-  },
-});
