@@ -1,12 +1,10 @@
 import {
   Text,
-  StyleSheet,
   TextInput,
   SafeAreaView,
   FlatList,
-  TouchableOpacity,
-  StatusBar,
   Pressable,
+  StyleSheet
 } from 'react-native';
 import { fetchMedia } from '../helpers/get-movies';
 import { useState } from 'react';
@@ -28,7 +26,7 @@ const Item = ({ item }: ItemProps) => (
     <Pressable>
       {() => (
         <>
-          <Text style={[styles.title]}>{item.l}</Text>
+          <Text>{item.l}</Text>
           <Text>
             {item.q} ({item.y})
           </Text>
@@ -83,12 +81,8 @@ export default function SearchMedia() {
   );
 }
 
-const styles = StyleSheet.create({
-  item: {
-    margin: 30,
-    padding: 20,
-  },
-  title: {
-        fontSize: 14,
-  },
-});
+const style = StyleSheet.create({
+  searchBar: {
+
+  }
+})

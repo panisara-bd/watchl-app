@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Text, Pressable } from 'react-native';
 import { withOAuth } from 'aws-amplify-react-native';
+import { authStyle } from './AuthStyle';
 
 type Props = {
   googleSignIn: any;
@@ -9,7 +10,7 @@ type Props = {
 function GoogleAuthButton(props: Props) {
   const { googleSignIn } = props;
 
-  return <Button title="Google" onPress={googleSignIn} />;
+  return <Pressable style={authStyle.google} onPress={googleSignIn} ><Text style={authStyle.pressableMainText}>Google</Text></Pressable>;
 }
 
 export default withOAuth(GoogleAuthButton);

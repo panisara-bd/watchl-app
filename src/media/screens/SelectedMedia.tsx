@@ -1,4 +1,4 @@
-import { Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 import { Image } from 'expo-image';
 import { fetchById } from '../helpers/get-movies';
 import { useEffect, useState } from 'react';
@@ -58,9 +58,4 @@ export default function SelectedMedia({ id }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: 250,
-  },
-});
+
