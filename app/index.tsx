@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
 import { Text } from 'react-native';
-import { Auth, Hub } from 'aws-amplify';
 import Header from './header';
-import { useRouter } from 'expo-router';
 import SignIn from '../src/auth/screens/SignIn';
 import { useUser } from '../src/auth/UserContext';
 
 export default function Home() {
   const { user } = useUser();
+  console.log(user?.signInUserSession?.accessToken?.jwtToken);
 
   if (user) {
     return (

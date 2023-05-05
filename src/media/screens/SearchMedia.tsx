@@ -1,19 +1,21 @@
 import {
-  Text,
   SafeAreaView,
   FlatList,
   Pressable,
+  StyleSheet
 } from 'react-native';
-import { fetchMedia } from '../helpers/get-movies';
+import { searchMedia } from '../helpers/get-media';
 import { useState } from 'react';
 import { Link } from 'expo-router';
 import { StyledTextInput } from '../../design-system/components/StyledTextInput';
+import { useToken } from '../../auth/UserContext';
+import { StyledText } from '../../design-system/components/StyledText';
 
 type ItemData = {
   id: string;
-  l: string;
-  q: string;
-  y: string;
+  title: string;
+  type: string;
+  year: string;
 };
 
 type ItemProps = {
@@ -22,13 +24,13 @@ type ItemProps = {
 
 const Item = ({ item }: ItemProps) => (
   <Link href={`/media/${item.id}`} asChild>
-    <Pressable>
+    <Pressable style={styles.button}>
       {() => (
         <>
-          <Text>{item.l}</Text>
-          <Text>
-            {item.q} ({item.y})
-          </Text>
+          <StyledText isAlignLeft size="md">{item.title}</StyledText>
+          <StyledText isAlignLeft size="sm">
+            {item.type} ({item.year})
+          </StyledText>
         </>
       )}
     </Pressable>
@@ -40,10 +42,12 @@ export default function SearchMedia() {
   const [searchResults, setSearchResults] = useState([]);
   const [debounceTimeout, setDebounceTimeout] = useState<NodeJS.Timeout>();
 
+  const token = useToken();
+
   const getResult = async () => {
     try {
-      const res = await fetchMedia(searchQuery);
-      setSearchResults(res.d);
+      const result = await searchMedia(token, searchQuery);
+      setSearchResults(result);
     } catch (error) {
       console.log(error);
     }
@@ -80,3 +84,12 @@ export default function SearchMedia() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#a1a1a1',
+  },
+  text: {
+    color: '#fff',
+  },
+});

@@ -1,6 +1,12 @@
 import { Auth, Hub } from 'aws-amplify';
 import { useRouter } from 'expo-router';
-import React, { FC, PropsWithChildren, useContext, useEffect, useState } from 'react';
+import React, {
+  FC,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 type UserContextType = {
   user: any;
@@ -12,6 +18,12 @@ export const UserContext = React.createContext<UserContextType>({
 
 export const useUser = () => useContext(UserContext);
 
+export const useToken = () => {
+  const user = useUser().user;
+  const token = user.signInUserSession.accessToken.jwtToken;
+  return token;
+};
+
 export const UserContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<any>(null);
   const router = useRouter();
@@ -19,7 +31,7 @@ export const UserContextProvider: FC<PropsWithChildren> = ({ children }) => {
     Auth.currentAuthenticatedUser()
       .then((result: any) => setUser(result))
       .catch(() => {});
-    
+
   useEffect(() => {
     fetchUser();
   }, []);
@@ -43,8 +55,6 @@ export const UserContextProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
   );
 };
