@@ -9,6 +9,7 @@ import { useToken } from '../../auth/UserContext';
 type Props = {
     id: string;
     isVisible: boolean;
+    // timeScheduled: string;
   };
 
 export default function ScheduleMedia({ id, isVisible }: Props) {
@@ -38,6 +39,7 @@ export default function ScheduleMedia({ id, isVisible }: Props) {
       alert('Please fill in the required details');
     }
   };
+
   return (
     <Modal animationType="slide" transparent={false} visible={isVisible}>
       <View>

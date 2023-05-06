@@ -5,9 +5,9 @@ type Props = ComponentProps<typeof TextInput> & {
   isSearchBar?: boolean;
 };
 
-export const StyledTextInput: FC<Props> = ({ isSearchBar, ...props }) => (
+export const StyledTextInput: FC<Props> = ({ isSearchBar, style, ...props }) => (
   <TextInput
-    style={[stylesheet.input, isSearchBar ? stylesheet.searchBar : null]}
+    style={[stylesheet.input, isSearchBar ? stylesheet.searchBar : null, style]}
     placeholderTextColor="#8B8B8B"
     {...props}
   />

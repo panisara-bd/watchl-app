@@ -7,6 +7,7 @@ import { StyledButton } from '../../design-system/components/StyledButton';
 import { StyledText } from '../../design-system/components/StyledText';
 import { CenteredContainer } from '../../design-system/components/CenteredContainer';
 import { StyledLink } from '../../design-system/components/StyledLink';
+import PasswordField from '../PasswordField';
 
 export default function SignUp() {
   const router = useRouter();
@@ -33,16 +34,12 @@ export default function SignUp() {
       <StyledText size="lg">Welcome to WatchL</StyledText>
       <StyledText size="md">Start scheduling what to watch next!</StyledText>
       <StyledTextInput
+        autoCapitalize='none'
         onChangeText={setUsername}
         value={username}
         placeholder="username"
       />
-      <StyledTextInput
-        onChangeText={setPassword}
-        value={password}
-        placeholder="password"
-        secureTextEntry
-      />
+      <PasswordField password={password} setPassword={setPassword} />
       <StyledButton text="Sign Up" onPress={onSignUp} />
       <StyledText size="sm">Or sign up with</StyledText>
       <GoogleAuthButton />

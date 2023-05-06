@@ -7,11 +7,15 @@ import { StyledTextInput } from '../../design-system/components/StyledTextInput'
 import { StyledButton } from '../../design-system/components/StyledButton';
 import { CenteredContainer } from '../../design-system/components/CenteredContainer';
 import { StyledLink } from '../../design-system/components/StyledLink';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Pressable, View } from 'react-native';
+import PasswordField from '../PasswordField';
 
 export default function SignIn() {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
 
   const onSignIn = async () => {
     try {
@@ -29,16 +33,12 @@ export default function SignIn() {
         Welcome back to WatchL, see what's on the scheldule to watch next?
       </StyledText>
       <StyledTextInput
+        autoCapitalize="none"
         onChangeText={setUsername}
         value={username}
         placeholder="username"
       />
-      <StyledTextInput
-        onChangeText={setPassword}
-        value={password}
-        placeholder="password"
-        secureTextEntry
-      />
+      <PasswordField password={password} setPassword={setPassword} />
       <StyledButton onPress={onSignIn} text="Sign In" />
       <StyledText size="sm">Or sign in with</StyledText>
       <GoogleAuthButton />
