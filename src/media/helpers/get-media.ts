@@ -14,7 +14,8 @@ export const searchMedia = async (token: string, query: string) => {
   if (response.ok) {
     return response.json();
   } else {
-    return {};
+    console.error(`Error searching: ${response.status}`);
+    return [];
   }
 };
 

@@ -1,5 +1,6 @@
 import React, { FC, ComponentProps } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
+import { colors } from '../colors';
 
 type Props = ComponentProps<typeof TextInput> & {
   isSearchBar?: boolean;
@@ -18,8 +19,8 @@ const stylesheet = StyleSheet.create({
     height: 40,
     margin: 12,
     padding: 10,
-    backgroundColor: '#27282C',
-    color: '#fff',
+    backgroundColor: colors.darkGray,
+    color: colors.white,
     borderRadius: 5,
   },
   searchBar: {

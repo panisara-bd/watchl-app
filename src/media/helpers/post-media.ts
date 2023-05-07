@@ -22,6 +22,6 @@ export const scheduleMedia =async (token: string, data: Data) => {
     if (response.ok) {
       return response.json();
     } else {
-      return {};
+      throw new Error(`Unable to schedule media, got ${response.status}`);
     }
   }

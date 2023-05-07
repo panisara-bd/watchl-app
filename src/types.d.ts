@@ -7,6 +7,7 @@ declare module 'aws-amplify' {
     static confirmSignUp(username: string, code: string): any;
     static signIn(username: string, password: string): any;
     static currentAuthenticatedUser(): any;
+    static currentSession(): any;
     static signOut(): any;
     static federatedSignIn(data: any): any;
   }

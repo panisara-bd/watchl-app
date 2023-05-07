@@ -1,4 +1,10 @@
-import { Text, StyleSheet, ScrollView, Pressable } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  ScrollView,
+  Pressable,
+  Dimensions,
+} from 'react-native';
 import { Image } from 'expo-image';
 import { getMediaById } from '../helpers/get-media';
 import { useEffect, useState } from 'react';
@@ -7,25 +13,19 @@ import { StyledText } from '../../design-system/components/StyledText';
 import { useToken } from '../../auth/UserContext';
 import ScheduleMedia from './ScheduleMedia';
 import { StyledButton } from '../../design-system/components/StyledButton';
+import { colors } from '../../design-system/colors';
+import StyledModal from '../../design-system/components/StyledModal';
+import { Media } from '../types';
 
 type Props = {
   id: string;
 };
 
-type Media = {
-  title: string;
-  titleType: string;
-  year: string;
-  image: {
-    height: number;
-    url: string;
-    width: number;
-  };
-  runningTimeInMinutes: number;
-  summary: string;
-};
-
 export default function SelectedMedia({ id }: Props) {
+  const dimensions = Dimensions.get('window');
+  const imageWidth = dimensions.width - 80;
+  const imageHeight = Math.round((imageWidth * 16) / 9);
+
   const [mediaResult, setMediaResult] = useState<Media>();
   const [showScheduleForm, setShowScheduleForm] = useState(false);
 
@@ -47,38 +47,41 @@ export default function SelectedMedia({ id }: Props) {
 
   return (
     <ScrollView>
-      <StyledText size="lg">{mediaResult?.title}</StyledText>
-      <Text style={styles.text}>{mediaResult?.titleType}</Text>
-      <Text style={styles.text}>
+      <StyledText size="lg">
+        {mediaResult?.title}
+        {mediaResult?.year ? ` (${mediaResult.year})` : ''}
+      </StyledText>
+      <StyledText size="sm" style={styles.secondaryText}>
+        {mediaResult?.titleType === 'movie' ? 'Movie' : 'TV Show'}
+      </StyledText>
+      <StyledText size="sm" style={styles.secondaryText}>
         Run Time: {mediaResult?.runningTimeInMinutes} minutes
-      </Text>
-      <Text style={styles.text}>Year: {mediaResult?.year}</Text>
-      <Text style={styles.text}>Plot summary: {mediaResult?.summary}</Text>
+      </StyledText>
+      <StyledButton
+        onPress={() => setShowScheduleForm(true)}
+        text="Schedule this media"
+      />
+      <StyledModal isVisible={showScheduleForm}>
+        <ScheduleMedia closeModal={() => setShowScheduleForm(false)} id={id} media={mediaResult} />
+      </StyledModal>
+      <StyledButton type="secondary" onPress={() => router.back()} text="Back" />
       <Image
         source={mediaResult?.image?.url}
-        style={{
-          width: mediaResult?.image?.width,
-          height: mediaResult?.image?.height,
-        }}
+        style={{ width: imageWidth, height: imageHeight }}
         placeholder={mediaResult?.title}
-        contentFit="contain"
+        contentFit="scale-down"
       />
-      <Text
-        style={styles.text}
-        onPress={() => {
-          router.push('/');
-        }}
-      >
-        Back
-      </Text>
-      <StyledButton onPress={() => setShowScheduleForm(true)} text='Schedule this media' />
-      <ScheduleMedia isVisible={showScheduleForm} id={id} />
+      <StyledText size="sm" style={styles.secondaryText}>
+        Plot summary: {mediaResult?.summary}
+      </StyledText>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  text: {
-    color: '#fff',
+  secondaryText: {
+    color: colors.ash,
+    marginVertical: 0,
+    textAlign: 'left',
   },
 });

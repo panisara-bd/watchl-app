@@ -1,27 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
-import { Slot } from 'expo-router';
-import { View, StyleSheet } from 'react-native';
+import { Slot, Tabs } from 'expo-router';
+import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import 'react-native-gesture-handler';
 import { UserContextProvider } from '../src/auth/UserContext';
 import { configureAmplify } from '../src/auth/configureAmplify';
+import { colors } from '../src/design-system/colors';
+import Footer from '../src/Footer';
 
 configureAmplify();
 
 export default function MainLayout() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <UserContextProvider>
-        <Slot />
+        <ScrollView style={styles.content}>
+          <Slot />
+        </ScrollView>
+        <Footer />
       </UserContextProvider>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 30,
-    backgroundColor: '#0B0B0B',  
+    backgroundColor: colors.darker,
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 30,
+    paddingTop: 10,
   },
 });

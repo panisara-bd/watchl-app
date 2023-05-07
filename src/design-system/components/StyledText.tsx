@@ -3,13 +3,12 @@ import { Text, StyleSheet } from 'react-native';
 
 type Props = ComponentProps<typeof Text> & {
   size: 'sm' | 'md' | 'lg';
-  isAlignLeft?: boolean;
 };
 
 export const StyledText: FC<PropsWithChildren<Props>> = ({
   children,
   size,
-  isAlignLeft,
+  style,
   ...props
 }) => (
   <Text
@@ -18,7 +17,8 @@ export const StyledText: FC<PropsWithChildren<Props>> = ({
       size === 'sm' ? stylesheet.textSmall : null,
       size === 'md' ? stylesheet.textMedium : null,
       size === 'lg' ? stylesheet.textLarge : null,
-      isAlignLeft ? stylesheet.textLeft: stylesheet.textBase]}
+      style
+    ]}
     {...props}
   >
     {children}
@@ -40,7 +40,4 @@ const stylesheet = StyleSheet.create({
   textLarge: {
     fontSize: 30,
   },
-  textLeft: {
-    textAlign: 'left',
-  }
 });
