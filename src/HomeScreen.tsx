@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     marginTop: 10,
-    backgroundColor: colors.error,
+    backgroundColor: '#3d3d3d',
     padding: 4,
     borderRadius: 8,
     flexDirection: 'row',

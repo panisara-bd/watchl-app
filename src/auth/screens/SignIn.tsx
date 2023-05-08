@@ -7,8 +7,6 @@ import { StyledTextInput } from '../../design-system/components/StyledTextInput'
 import { StyledButton } from '../../design-system/components/StyledButton';
 import { CenteredContainer } from '../../design-system/components/CenteredContainer';
 import { StyledLink } from '../../design-system/components/StyledLink';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Pressable, View } from 'react-native';
 import PasswordField from '../PasswordField';
 
 export default function SignIn() {

@@ -80,7 +80,7 @@ export default function SearchMedia() {
 
   return (
     <>
-      <StyledTextInput
+      <StyledTextInput style={styles.searchText}
         isSearchBar
         onChangeText={onSearchChange}
         value={searchQuery}
@@ -93,11 +93,13 @@ export default function SearchMedia() {
 }
 
 const styles = StyleSheet.create({
-  searchList: {},
   searchListItem: {
     marginTop: 10,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  searchText: {
+    color: colors.darker
   },
   searchListItemContent: {
     marginLeft: 10,
