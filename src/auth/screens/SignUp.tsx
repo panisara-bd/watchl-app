@@ -25,7 +25,9 @@ export default function SignUp() {
       });
       router.push({ pathname: '/verification', params: { username } });
     } catch (error) {
-      alert('Could not sign up');
+      console.error('Sign up error:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      alert(`Could not sign up: ${errorMessage}`);
     }
   };
 

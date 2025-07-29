@@ -65,7 +65,7 @@ export default function SearchMedia() {
       const result = await searchMedia(token, query);
       setSearchResults(result);
     } catch (error) {
-      console.log(error);
+      console.error('Search failed:', error instanceof Error ? error.message : error);
     }
   };
 

@@ -20,7 +20,9 @@ export default function SignIn() {
       await Auth.signIn(username, password);
       router.push('/');
     } catch (error) {
-      alert('Could not sign in');
+      console.error('Sign in error:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      alert(`Could not sign in: ${errorMessage}`);
     }
   };
 

@@ -14,8 +14,9 @@ export const searchMedia = async (token: string, query: string) => {
   if (response.ok) {
     return response.json();
   } else {
-    console.error(`Error searching: ${response.status}`);
-    return [];
+    const errorText = await response.text();
+    console.error(`Search API error ${response.status}:`, errorText);
+    throw new Error(`API Error ${response.status}: ${errorText}`);
   }
 };
 
